@@ -10,6 +10,13 @@ interface DownloadResult {
   title?: string;
 }
 
+const removeBreadcrumbs = (document: Document) => {
+  const breadcrumbs = document.querySelectorAll('[itemtype="https://schema.org/BreadcrumbList"]');
+  breadcrumbs.forEach((breadcrumb) => {
+    breadcrumb.remove();
+  });
+};
+
 const download = async (url: string): Promise<DownloadResult> => {
   try {
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
@@ -24,6 +31,7 @@ const download = async (url: string): Promise<DownloadResult> => {
     }
 
     const dom = new JSDOM(response.data);
+    removeBreadcrumbs(dom.window.document);
     const reader = new Readability(dom.window.document);
     const article = reader.parse();
     if (!article) {

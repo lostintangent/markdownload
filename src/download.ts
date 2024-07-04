@@ -9,7 +9,7 @@ const onlyMarkdown: boolean = process.argv.includes("--md");
   try {
     const result = await download(url);
     if (onlyMarkdown) {
-      console.log(result.markdown);
+      console.log(`# ${result.title}\n\n${result.markdown}`);
     } else {
       console.log(result);
     }
