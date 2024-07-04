@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { download } = require('./index');
 
 const url = process.argv[2];

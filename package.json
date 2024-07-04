@@ -9,6 +9,9 @@
     "turndown": "^7.2.0"
   },
   "scripts": {
-    "download": "node test-download.js"
+    "download": "node download.js"
+  },
+  "bin": {
+    "markdownload": "download.js"
   }
 }
