@@ -1,5 +1,4 @@
 import axios from "axios";
-import jsdom from "jsdom";
 import { JSDOM } from "jsdom";
 import { Readability } from "@mozilla/readability";
 import TurndownService from "turndown";
