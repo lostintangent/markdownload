@@ -1,6 +1,6 @@
 # markdownload
 
-`markdownload` is a Node.js library that exports a single method called `download`. The `download` function accepts an HTTP URL, fetches the contents of the URL, parses it into a DOM using the `jsdom` package, and then uses the `readability` package to parse the document and convert the `textContent` property (which is HTML) into the equivalent markdown.
+`markdownload` is a Node.js library that exports a single method called `download`. The `download` function accepts an HTTP URL, fetches the contents of the URL, checks the `Content-Type` header of the response, and if the `Content-Type` is `text/markdown`, returns the response data as markdown without further parsing. If the `Content-Type` is not `text/markdown`, the function parses the content into a DOM using the `jsdom` package, and then uses the `readability` package to parse the document and convert the `textContent` property (which is HTML) into the equivalent markdown.
 
 ## Usage
 
@@ -43,3 +43,7 @@ const { download } = require('./markdownload');
   console.log(markdown);
 })();
 ```
+
+## Note
+
+The `download` function now checks the `Content-Type` header of the response. If the `Content-Type` is `text/markdown`, the function returns the response data as markdown without further parsing. If the `Content-Type` is not `text/markdown`, the function proceeds with parsing the content into a DOM using `jsdom`, and then uses the `readability` package to parse the document and convert the `textContent` property into markdown.

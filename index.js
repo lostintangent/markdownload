@@ -1,4 +1,4 @@
- const axios = require('axios');
+const axios = require('axios');
 const jsdom = require('jsdom');
 const { JSDOM } = jsdom;
 const { Readability } = require('@mozilla/readability');
@@ -7,6 +7,12 @@ const TurndownService = require('turndown');
 const download = async (url) => {
   try {
     const response = await axios.get(url);
+
+    const contentType = response.headers['content-type'];
+    if (contentType.startsWith("text/markdown") || contentType.startsWith("text/plain")) {
+      return { markdown: response.data };
+    }
+
     const dom = new JSDOM(response.data);
     const reader = new Readability(dom.window.document);
     const article = reader.parse();
