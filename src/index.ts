@@ -1,8 +1,8 @@
-import axios from 'axios';
-import jsdom from 'jsdom';
-import { JSDOM } from 'jsdom';
-import { Readability } from '@mozilla/readability';
-import TurndownService from 'turndown';
+import axios from "axios";
+import jsdom from "jsdom";
+import { JSDOM } from "jsdom";
+import { Readability } from "@mozilla/readability";
+import TurndownService from "turndown";
 
 interface DownloadResult {
   html?: string;
@@ -18,7 +18,7 @@ const download = async (url: string): Promise<DownloadResult> => {
 
     const response = await axios.get(url);
 
-    const contentType = response.headers['content-type'];
+    const contentType = response.headers["content-type"];
     if (contentType.startsWith("text/markdown") || contentType.startsWith("text/plain")) {
       return { markdown: response.data };
     }
@@ -34,7 +34,7 @@ const download = async (url: string): Promise<DownloadResult> => {
     const markdown = turndownService.turndown(article.content);
     return { html: article.content, markdown, title: article.title };
   } catch (error) {
-    console.error('Error downloading content:', error);
+    console.error("Error downloading content:", error);
     throw error;
   }
 };

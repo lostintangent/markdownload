@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { download } from './index';
+import { download } from "./index";
 
 const url: string = process.argv[2];
 
@@ -9,6 +9,6 @@ const url: string = process.argv[2];
     const result = await download(url);
     console.log(result);
   } catch (error) {
-    console.error('Error:', error);
+    console.error("Error:", error);
   }
 })();
