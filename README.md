@@ -47,3 +47,17 @@ const { download } = require('./markdownload');
 ## Note
 
 The `download` function now checks the `Content-Type` header of the response. If the `Content-Type` is `text/markdown`, the function returns the response data as markdown without further parsing. If the `Content-Type` is not `text/markdown`, the function proceeds with parsing the content into a DOM using `jsdom`, and then uses the `readability` package to parse the document and convert the `textContent` property into markdown.
+
+## Testing the download function from the command line
+
+A new NPM script has been added to make it easy to test the `download` function from the command line. You can use the script as follows:
+
+1. Run the script with a URL:
+
+```bash
+npm run download <url>
+```
+
+Replace `<url>` with the URL you want to test.
+
+2. The script will fetch the content from the provided URL and log the result to the console.
