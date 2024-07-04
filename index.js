@@ -6,6 +6,10 @@ const TurndownService = require('turndown');
 
 const download = async (url) => {
   try {
+    if (!url.startsWith("http://") && !url.startsWith("https://")) {
+      url = `https://${url}`;
+    }
+
     const response = await axios.get(url);
 
     const contentType = response.headers['content-type'];
