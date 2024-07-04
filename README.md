@@ -23,3 +23,17 @@ import { download } from "markdownload";
   // Do something with the markdown/title
 })();
 ```
+
+## Using the CLI
+
+You can also use the `markdownload` CLI to download a URL and get the markdown content directly from the command line:
+
+```bash
+npx markdownload <url>
+```
+
+If you'd simply like to see the raw Markdown content, then append the `--md` flag:
+
+```bash
+npx markdownload <url> --md
+```
