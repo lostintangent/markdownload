@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-const { download } = require('./index');
+import { download } from './index';
 
-const url = process.argv[2];
+const url: string = process.argv[2];
 
 (async () => {
   try {

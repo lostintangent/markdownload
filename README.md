@@ -9,13 +9,13 @@ To use the `markdownload` library, follow the instructions below:
 1. Install the library and its dependencies:
 
 ```bash
-npm install axios jsdom readability
+npm install axios jsdom readability typescript ts-node
 ```
 
-2. Create a file named `index.js` and add the following code:
+2. Create a file named `index.ts` and add the following code:
 
-```javascript
-const { download } = require('./markdownload');
+```typescript
+import { download } from './markdownload';
 
 (async () => {
   const url = 'https://example.com';
@@ -27,15 +27,15 @@ const { download } = require('./markdownload');
 3. Run the script:
 
 ```bash
-node index.js
+npx ts-node index.ts
 ```
 
 ## Example
 
 Here is an example of how to use the `download` function:
 
-```javascript
-const { download } = require('./markdownload');
+```typescript
+import { download } from './markdownload';
 
 (async () => {
   const url = 'https://example.com';

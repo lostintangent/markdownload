@@ -1,10 +1,16 @@
-const axios = require('axios');
-const jsdom = require('jsdom');
-const { JSDOM } = jsdom;
-const { Readability } = require('@mozilla/readability');
-const TurndownService = require('turndown');
+import axios from 'axios';
+import jsdom from 'jsdom';
+import { JSDOM } from 'jsdom';
+import { Readability } from '@mozilla/readability';
+import TurndownService from 'turndown';
 
-const download = async (url) => {
+interface DownloadResult {
+  html?: string;
+  markdown: string;
+  title?: string;
+}
+
+const download = async (url: string): Promise<DownloadResult> => {
   try {
     if (!url.startsWith("http://") && !url.startsWith("https://")) {
       url = `https://${url}`;
@@ -20,6 +26,10 @@ const download = async (url) => {
     const dom = new JSDOM(response.data);
     const reader = new Readability(dom.window.document);
     const article = reader.parse();
+    if (!article) {
+      throw new Error("Unable to parse article");
+    }
+
     const turndownService = new TurndownService();
     const markdown = turndownService.turndown(article.content);
     return { html: article.content, markdown, title: article.title };
@@ -29,4 +39,4 @@ const download = async (url) => {
   }
 };
 
-module.exports = { download };
+export { download };
